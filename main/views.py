@@ -20,9 +20,7 @@ def grab_view(request, template_name="location.html"):
 
     loc = request.GET.get('location')
 
-    person_location = get_location(loc)
-
-    ctx['person_location'] = person_location
+    ctx['person_location'] = loc
     return render_to_response(template_name, ctx, 
         context_instance=RequestContext(request))
 
@@ -52,13 +50,6 @@ def get_result(loc, url):
     else:
 
         return None
-
-
-def get_location(loc):
-
-
-
-    return loc
 
 
 # KEYWORDS = { 'FOUND': get_processor }

@@ -236,7 +236,7 @@ header .controls .btn.lead { background: #dddddd; }
 	padding:45px 0 64px 0;
 }
 .main-content .left-container {
-	width:65.65%;
+	width:100%;
 	float:left;
 }
 
@@ -442,6 +442,7 @@ article.small {
 	border-bottom: solid 1px #d8d8d8;
 	padding-bottom: 12px;
 	margin-bottom: 12px;
+	margin-left: 1% !important;
 }
 article.small.last {
 	border-bottom: none;
