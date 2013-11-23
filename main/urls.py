@@ -4,6 +4,7 @@ from django.conf import settings
 
 urlpatterns = patterns('main.views',
     url(r'^$', 'index', name='index'),
-    url(r'^grab$', 'grab', name='grab'),
-
+    url(r'^grab$', 'grab_view', name='grab'),
+    
+    url(r'^process_message$', 'process_message', name='process_message'),
 )
