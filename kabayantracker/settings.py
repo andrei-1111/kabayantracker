@@ -32,7 +32,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'south',
 
-    'messaging',
+    'main',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -59,7 +59,7 @@ TEMPLATE_DIRS = (
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
+        'NAME': 'kabayantracker',        # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -85,6 +85,42 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 STATIC_ROOT = os.path.join(PROJECT_ROOT, '../static/')
 STATIC_URL = '/static/'
+
+LOG_DIR = os.path.join(PROJECT_ROOT, '../../log/')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'standard': {
+            'format': "%(asctime)s %(levelname)s %(filename)s %(lineno)s : %(message)s",
+            'datefmt': "%y/%m/%d %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s : %(message)s',
+            'datefmt': '%y/%m/%d, %H:%M:%S',
+        },
+    },
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'null': {'level': 'DEBUG',
+                 'class': 'django.utils.log.NullHandler'},
+        'console': {'level': 'DEBUG',
+                    'class': 'logging.StreamHandler',
+                    'formatter': 'simple'},
+        'app': {'level': 'INFO',
+                'class': 'logging.handlers.RotatingFileHandler',
+                'filename': os.path.join(LOG_DIR, 'kabayantracker.log'),
+                'formatter': 'standard',
+                'maxBytes': 1024 * 1024 * 50}},
+    'loggers': {'django': {'handlers': ['null'],
+                           'propagate': True,
+                           'level': 'INFO'}}
+}
 
 try:
     from local_settings import *

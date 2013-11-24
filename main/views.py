@@ -1,11 +1,16 @@
 
 import simplejson as json
 import grab
+import logging
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse
+
+from models import Person, STATUS_FOUND
 
 
 def index(request, template_name="index.html"):
@@ -88,4 +93,49 @@ def process_message(request, template_name="response.html"):
         
     else:
         pass
+
+text = 'now cttracker john carter/borbon cebu/25/male'
+
+@require_POST
+@csrf_exempt
+def process_response(request):
+    text_message = request.POST['text'].strip("'")
+
+    text_message_list = [ word.upper() for word in text_message.split(" ") ]
+
+    import pdb; pdb.set_trace()
+
+    # Split spaces and check if keyword found exist
+    if 'FOUND' in text_message_list:
+        details_list = text_message_list[text_message_list.index('FOUND')+1:]
+        details_message = ' '.join(details_list)
+
+        # Split person information by slash
+        details_message_list = details_message.split('/')
+        # Valid length
+        if len(details_message_list) == 4:
+            # Store to database
+            try:
+                Person.objects.create(
+                    full_name = details_message_list[0],
+                    address = details_message_list[1],
+                    age = details_message_list[2],
+                    gender = details_message_list[3],
+                        status = STATUS_FOUND
+                )
+            except Exception as e:
+                logging.warning("Error".format(e))
+
+            logging.warning("Saved Instance")
+            return HttpResponse(status=201)
+
+        else:
+            # Invalid length
+            logging.warning("Invalid Length of message {}".format(text_message))
+
+    else:
+        logging.warning("Invalid keyword of message {}".format(text_message))
+        
+
+# curl -d "text='now cttracker found john carter/borbon cebu/25/male'" http://192.168.253.137:8000/process_response
 
