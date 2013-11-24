@@ -94,16 +94,13 @@ def process_message(request, template_name="response.html"):
     else:
         pass
 
-text = 'now cttracker john carter/borbon cebu/25/male'
-
+# curl -d "text='now cttracker found john carter/borbon cebu/25/male'" http://192.168.253.137:8000/process_response
 @require_POST
 @csrf_exempt
 def process_response(request):
     text_message = request.POST['text'].strip("'")
 
     text_message_list = [ word.upper() for word in text_message.split(" ") ]
-
-    import pdb; pdb.set_trace()
 
     # Split spaces and check if keyword found exist
     if 'FOUND' in text_message_list:
@@ -137,5 +134,4 @@ def process_response(request):
         logging.warning("Invalid keyword of message {}".format(text_message))
         
 
-# curl -d "text='now cttracker found john carter/borbon cebu/25/male'" http://192.168.253.137:8000/process_response
 
