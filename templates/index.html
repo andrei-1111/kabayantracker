@@ -76,9 +76,10 @@
                                 <h3>Tracker</h3>
                             </div>
 
+                            {% for person in all %}
                             <article class="small span3">
                                 <div class="post-thumb">
-                                    <a href="#"><img src="img/3.jpg" alt=""></a>
+                                    <a href="#"><img src="img/silhouette-question-mark.jpg" width="155" height="115" alt=""></a>
                                     <div class="overlay">
                                         <div class="op"></div>
                                         <div class="category">
@@ -88,113 +89,14 @@
                                     </div>
                                 </div>
                                 <div class="category-details">
-                                    <p class="date">12 march 2013</p>
-                                    <h3><a href="#">Name</a></h3>
-                                    <h3><a href="#">Name</a></h3>
-                                    <h3><a href="#">Address</a></h3>
-                                    <h3><a href="#">Sex/Age</a></h3>
+                                    <p class="date">{{person.creation_date}}</p>
+                                    <h3><a href="#">{{person.full_name}}</a></h3>
+                                    <h3><a href="#">{{person.address}}</a></h3>
+                                    <h3><a href="#">{{person.age}}</a></h3>
+                                    <h3><a href="#">{{person.gender}}</a></h3>
                                 </div>
                             </article>
-
-                            <article class="small span3">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="img/5.jpg" alt=""></a>
-                                    <div class="overlay">
-                                        <div class="op"></div>
-                                        <div class="category">
-                                            <div class="icon"></div>
-                                            view
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="category-details">
-                                    <p class="date">12 march 2013</p>
-                                    <h3><a href="#">Name</a></h3>
-                                    <h3><a href="#">Name</a></h3>
-                                    <h3><a href="#">Address</a></h3>
-                                    <h3><a href="#">Sex/Age</a></h3>
-                                </div>
-                            </article>
-
-                            <article class="small span3">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="img/7.jpg" alt=""></a>
-                                    <div class="overlay">
-                                        <div class="op"></div>
-                                        <div class="category">
-                                            <div class="icon"></div>
-                                            view
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="category-details">
-                                    <p class="date">12 march 2013</p>
-                                    <h3><a href="#">Name</a></h3>
-                                    <h3><a href="#">Name</a></h3>
-                                    <h3><a href="#">Address</a></h3>
-                                    <h3><a href="#">Sex/Age</a></h3>
-                                </div>
-                            </article>
-
-                            <article class="small span3">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="img/9.jpg" alt=""></a>
-                                    <div class="overlay">
-                                        <div class="op"></div>
-                                        <div class="category">
-                                            <div class="icon"></div>
-                                            view
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="category-details">
-                                    <p class="date">12 march 2013</p>
-                                    <h3><a href="#">Name</a></h3>
-                                    <h3><a href="#">Name</a></h3>
-                                    <h3><a href="#">Address</a></h3>
-                                    <h3><a href="#">Sex/Age</a></h3>
-                                </div>
-                            </article>
-
-                            <article class="small span3">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="img/7.jpg" alt=""></a>
-                                    <div class="overlay">
-                                        <div class="op"></div>
-                                        <div class="category">
-                                            <div class="icon"></div>
-                                            view
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="category-details">
-                                    <p class="date">12 march 2013</p>
-                                    <h3><a href="#">Name</a></h3>
-                                    <h3><a href="#">Name</a></h3>
-                                    <h3><a href="#">Address</a></h3>
-                                    <h3><a href="#">Sex/Age</a></h3>
-                                </div>
-                            </article>
-
-                            <article class="small span3">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="img/9.jpg" alt=""></a>
-                                    <div class="overlay">
-                                        <div class="op"></div>
-                                        <div class="category">
-                                            <div class="icon"></div>
-                                            view
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="category-details">
-                                    <p class="date">12 march 2013</p>
-                                    <h3><a href="#">Name</a></h3>
-                                    <h3><a href="#">Name</a></h3>
-                                    <h3><a href="#">Address</a></h3>
-                                    <h3><a href="#">Sex/Age</a></h3>
-                                </div>
-                            </article>
+                            {% endfor %}
 
                         </div>
                     </div>
@@ -221,7 +123,7 @@
                     <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum.
                     </p>
                     <ul class="info">
-                        <li class="mail"><a href="#">support@projectname.com</a></li>
+                        <li class="mail"><a href="#">support@kabayantracker.com</a></li>
                     </ul>
                 </div>
                 <ul class='social'>
@@ -233,7 +135,7 @@
         </div>
         <div class="footer-bottom">
             <div class="copyright">
-                <p>Copyright 2013 &copy; <span>projectname</span>.</p>
+                <p>Copyright 2013 &copy; <span>kabayantracker</span>.</p>
             </div>
             <div class="clear"></div>
         </div>  

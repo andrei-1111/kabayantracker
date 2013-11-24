@@ -15,6 +15,9 @@ from models import Person, STATUS_FOUND
 
 def index(request, template_name="index.html"):
     ctx = {}
+
+    ctx['all'] = Person.objects.filter(status=STATUS_FOUND)
+
     return render_to_response(template_name, ctx,
         context_instance=RequestContext(request))
 
